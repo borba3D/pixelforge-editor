@@ -314,13 +314,14 @@
             modelFile = null;
             if (currentModel) {
                 scene.remove(currentModel);
-                transformControls.detach();
+                if(transformControls) transformControls.detach();
                 currentModel = null;
             }
             document.querySelectorAll('#pipeline-nav a').forEach((el, index) => {
                  el.classList.toggle('disabled', index > 0);
             });
-            document.getElementById('transform-toolbar').classList.add('hidden');
+            const toolbar = document.getElementById('transform-toolbar');
+            if(toolbar) toolbar.classList.add('hidden');
             loadHDRI(hdriPresets[0].url, false);
             showPanel('panel-import');
         }
@@ -741,7 +742,7 @@
             document.getElementById('confirm-new-project-btn').addEventListener('click', () => {
                 const projectName = document.getElementById('new-project-name-input').value.trim();
                 if (projectName) {
-                    let newProjectId = (userId && db) ? doc(collection(db, `users/${userId}/projects`)).id : Date.now().toString();
+                    const newProjectId = (userId && db) ? doc(collection(db, `users/${userId}/projects`)).id : Date.now().toString();
                     document.getElementById('new-project-modal').classList.add('hidden');
                     document.getElementById('new-project-name-input').value = '';
                     showEditor(newProjectId, projectName);
@@ -800,7 +801,10 @@
         }
 
         function setupExportControls() {
-            document.getElementById('generate-code-btn').addEventListener('click', () => document.getElementById('export-modal').classList.remove('hidden'));
+            document.getElementById('generate-code-btn').addEventListener('click', () => {
+                document.getElementById('export-code-textarea').value = "Gerando código...";
+                document.getElementById('export-modal').classList.remove('hidden');
+            });
             document.getElementById('close-modal-btn').addEventListener('click', () => document.getElementById('export-modal').classList.add('hidden'));
             document.getElementById('copy-code-btn').addEventListener('click', () => {
                 document.getElementById('export-code-textarea').select();
