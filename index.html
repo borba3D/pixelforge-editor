@@ -238,7 +238,15 @@
         import { TransformControls } from 'three/addons/controls/TransformControls.js';
 
         // Config Firebase
-        const firebaseConfig = { apiKey: "COLE_SUA_API_KEY_AQUI", authDomain: "SEU_PROJETO.firebaseapp.com", projectId: "SEU_PROJETO_ID", storageBucket: "SEU_PROJETO.appspot.com", messagingSenderId: "SEU_SENDER_ID", appId: "SEU_APP_ID" };
+        const firebaseConfig = {
+  apiKey: "AIzaSyBIZAg6h3-ccNawpKT49rA227tzNkPR5bA",
+  authDomain: "pixelforgeeditor.firebaseapp.com",
+  projectId: "pixelforgeeditor",
+  storageBucket: "pixelforgeeditor.firebasestorage.app",
+  messagingSenderId: "152471138951",
+  appId: "1:152471138951:web:c38357b043237eb58afe22",
+  measurementId: "G-2EE4EPY7W1"
+};
         
         // Variáveis globais
         let app, auth, db, storage, userId, currentProjectId = null, modelFile = null, thumbnailDataUrl = null;
@@ -255,7 +263,7 @@
         // --- Lógica de Inicialização e UI ---
         
         function initializeFirebase() {
-             if (firebaseConfig.apiKey === "COLE_SUA_API_KEY_AQUI") {
+             if (firebaseConfig.apiKey === "AIzaSyBIZAg6h3-ccNawpKT49rA227tzNkPR5bA") {
                  console.warn("Firebase não configurado.");
                  showDashboard(); 
                  return;
@@ -820,3 +828,4 @@
     </script>
 </body>
 </html>
+
